@@ -7,8 +7,10 @@ class Solution {
             int index = food[i] / 2;
             
             if(index >= 1) {
-            String str = String.valueOf(i);
-            sb.append(str.repeat(index));
+            //String str = String.valueOf(i);
+            //sb.append(str.repeat(index));
+        
+            sb.append(String.valueOf(i).repeat(index));
             }
         }
         

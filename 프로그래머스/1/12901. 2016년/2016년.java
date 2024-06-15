@@ -1,14 +1,18 @@
 class Solution {
     public String solution(int a, int b) {
-        String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
-        int[] months = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30};
-        int total = 0; // 총 일수
+        String[] week = {"THU", "FRI", "SAT", "SUN", "MON", "TUE", "WED"};
+        int[] month = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         
-        for(int i=0; i<a; i++) {
-            total += months[i];
+        int sum = 0;
+        
+        if(a != 1) {
+            for (int i = 0; i < a - 1; i ++) {
+            sum += month[i];
+            }
         }
-        total += b;
-
-        return days[(total + 4) % 7];
+        
+        sum += b;
+        
+        return week[sum % 7];
     }
 }

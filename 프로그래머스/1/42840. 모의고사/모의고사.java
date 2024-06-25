@@ -1,29 +1,35 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Solution {
     public int[] solution(int[] answers) {
-        int[] first = {1,2,3,4,5}; // 5개씩 반복
-        int[] second = {2,1,2,3,2,4,2,5}; // 8개씩 반복
-        int[] third = {3,3,1,1,2,2,4,4,5,5}; // 10개씩 반복
-        int[] score = {0,0,0}; // 각 수포자들의 점수
+        int[] student1 = {1, 2, 3, 4, 5};
+        int[] student2 = {2, 1, 2, 3, 2, 4, 2, 5};
+        int[] student3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        int[] score = {0, 0, 0};
         
-        // 수포자들의 점수 계산
-        for(int i=0; i<answers.length; i++) {
-            if(answers[i] == first[i%5]) score[0]++;
-            if(answers[i] == second[i%8]) score[1]++;
-            if(answers[i] == third[i%10]) score[2]++;
+        int j = 0;
+        
+        for(int answer : answers) {
+            score[0] += student1[j%5] == answer? 1 : 0;
+            score[1] += student2[j%8] == answer? 1 : 0;
+            score[2] += student3[j%10] == answer? 1 : 0;
+            j++;
         }
         
-        // 최대 점수 구하기
-        int max = Math.max(score[0], Math.max(score[1], score[2]));
+        int max =  Math.max(score[0], Math.max(score[1], score[2]));
         
-        // 최대 점수를 가진 수포자 리스트 생성
-        List<Integer> answ = new ArrayList<Integer>();
-        for(int i=0; i<score.length; i++) if(max == score[i]) answ.add(i+1);
+        List<Integer> maxList = new ArrayList<>();
         
-        int[] answer = new int[answ.size()];
-        for(int i=0; i<answ.size(); i++){
-            answer[i] = answ.get(i);
+        for(int i = 0 ; i < 3 ; i++) {
+            if (max == score[i]) {
+                maxList.add(i+1);
+            }
+        }
+        
+        int[] answer = new int[maxList.size()];
+        for(int i=0; i<maxList.size(); i++){
+            answer[i] = maxList.get(i);
         }
 
         return answer;

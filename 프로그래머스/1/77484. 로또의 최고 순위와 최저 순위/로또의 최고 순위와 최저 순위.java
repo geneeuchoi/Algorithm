@@ -11,13 +11,7 @@ class Solution {
             if(num == 0) zeroCnt +=1;
         }
         
-        
-        
         maxCnt = minCnt + zeroCnt;
-        System.out.println(minCnt);
-        System.out.println(zeroCnt);
-        System.out.println(maxCnt);
-        
         
         int[] answer = new int[2];
         answer[0] = place(maxCnt);
@@ -27,12 +21,21 @@ class Solution {
     
     public int place(int cnt) {
         int grade = 0;
-        if(cnt == 6) grade = 1;
-        else if(cnt == 5) grade = 2;
-        else if(cnt == 4) grade = 3;
-        else if(cnt == 3) grade = 4;
-        else if(cnt == 2) grade = 5;
-        else grade = 6;
+        
+        switch (cnt) {
+                case 6 -> grade = 1;
+                case 5 -> grade = 2;
+                case 4 -> grade = 3;
+                case 3 -> grade = 4;
+                case 2 -> grade = 5;
+                default -> grade = 6;
+        }
+        // if(cnt == 6) grade = 1;
+        // else if(cnt == 5) grade = 2;
+        // else if(cnt == 4) grade = 3;
+        // else if(cnt == 3) grade = 4;
+        // else if(cnt == 2) grade = 5;
+        // else grade = 6;
         
         return grade;
     }

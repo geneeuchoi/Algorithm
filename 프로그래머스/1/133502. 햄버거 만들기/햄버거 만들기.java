@@ -31,10 +31,4 @@ class Solution {
 
         return answer;
     }
-
-    public static void main(String[] args) {
-        Solution sol = new Solution();
-        int[] ingredient = {1, 2, 3, 1, 2, 3, 1, 1, 2, 3, 1};
-        System.out.println(sol.solution(ingredient)); // 출력 예시: 3
-    }
 }

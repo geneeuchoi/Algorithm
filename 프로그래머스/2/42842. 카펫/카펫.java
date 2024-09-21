@@ -9,8 +9,7 @@ class Solution {
             if (tiles % i == 0 && tiles / i >= i) {
                 width = tiles / i;
                 height = i;
-                if((width * 2 + height * 2 -4) == brown && 
-                   tiles - (width * 2 + height * 2 -4) == yellow) {
+                if((width * 2 + height * 2 -4) == brown) {
                     answer[0] = width;
                     answer[1] = height;
                     break;

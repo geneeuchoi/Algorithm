@@ -12,32 +12,29 @@ class Solution {
         float[] failRate = new float[N];
         int totalGamers = stages.length;
         for(int i = 0; i < gamers.length-1; i++) {
-            if (totalGamers == 0) {
-                failRate[i] = 0;
+            failRate[i] = (float)gamers[i] / totalGamers;
+            totalGamers -= gamers[i];
+        }
+        
+        List<int[]> stageFailList = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            stageFailList.add(new int[]{i + 1, failRate[i]});
+        }
+        
+        Collections.sort(stageFailList, (a, b) -> {
+            if (b[1] == a[1]) {
+                return Integer.compare(a[0], b[0]);
             } else {
-                failRate[i] = (float) gamers[i] / totalGamers;
-                totalGamers -= gamers[i];
+                return Float.compare(b[1], a[1]);
             }
-        }
+        });
         
-        float[] orderedFailRate = Arrays.copyOf(failRate, failRate.length);
-        Arrays.sort(orderedFailRate);
-        
-        
+        // 정렬된 스테이지 번호만 배열로 추출
         int[] answer = new int[N];
-        boolean[] answerFlag = new boolean[N];
-        int answerIndex = 0;
-        
-        for(int i = orderedFailRate.length-1; i >= 0; i--) {
-            for(int j = 0; j < failRate.length; j++) {
-                if(orderedFailRate[i] == failRate[j] && !answerFlag[j]) {
-                    answer[answerIndex] = j+1;
-                    answerFlag[j] = true;
-                    answerIndex++;
-                    break;
-                }
-            }
+        for (int i = 0; i < N; i++) {
+            answer[i] = stageFailList.get(i)[0];
         }
+        
         return answer;
     }
 }

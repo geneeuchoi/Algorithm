@@ -1,30 +1,32 @@
 from sys import stdin
 
+input = stdin.readline
 
-n, m = map(int, stdin.readline().rstrip().split(" "))
+while True:
+    line = input().rstrip()
+    if not line: break
+    n, m = map(int, line.split())
+    if n == 0 and m == 0: break
 
-while n != 0 and m != 0:
-	cds = dict()
-	for _ in range(n+m):
-		val = int(stdin.readline().rstrip())
-		cds[val] = cds.get(val, 0) + 1
-	vals = list(cds.values())
-	cnt = 0
-	for val in vals:
-		if val >= 2: cnt += 1
-	print(cnt)
+    sanguen = []
+    for _ in range(n):
+        sanguen.append(int(input().rstrip()))
+    
+    sunyoung = []
+    for _ in range(m):
+        sunyoung.append(int(input().rstrip()))
 
-	# for sang_cd in sanguen:
-	# 	low, high = 0, m-1
-	# 	while low <= high:
-	# 		mid = (low+high)//2
-	# 		sun_cd = sunyoung[mid]
-	# 		if sun_cd == sang_cd: 
-	# 			cnt += 1
-	# 			break
-	# 		elif sun_cd < sang_cd:
-	# 			low = mid + 1
-	# 		elif sun_cd > sang_cd:
-	# 			high = mid -1
-	# print(cnt)
-	n, m = map(int, stdin.readline().rstrip().split(" "))
+    cnt = 0
+    i, j = 0, 0 
+
+    while i < n and j < m:
+        if sanguen[i] == sunyoung[j]:
+            cnt += 1
+            i += 1
+            j += 1
+        elif sanguen[i] < sunyoung[j]:
+            i += 1
+        else:
+            j += 1
+            
+    print(cnt)
